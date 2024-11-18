@@ -1,0 +1,28 @@
+name: Build and Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run setup_gits.sh
+      run: ./setup_gits.sh
+
+    - name: Run build_all.sh
+      run: ./build_all.sh
+
+    - name: Run package-build.sh
+      run: ./package-build.sh
+
+    - name: Upload tar.xz artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifact
+        path: |
+          ./*.tar.xz
