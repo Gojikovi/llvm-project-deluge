@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
     - name: Set up Git
       run: git config --global user.email "no-reply@github.com"
            git config --global user.name "GitHub Actions"
-      
-    - name: Checkout repository
-      uses: actions/checkout@v4
 
     - name: Run setup_gits.sh
       run: ./setup_gits.sh
